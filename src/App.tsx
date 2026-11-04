@@ -1,7 +1,7 @@
 
 import Generator from './Generator'
 import PersyaratanProsedur from './PersyaratanProsedur'
-import FAQ from './FAQ'
+import FAQ from './faq'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './App.css'
