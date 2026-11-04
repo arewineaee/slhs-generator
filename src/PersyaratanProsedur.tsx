@@ -120,6 +120,12 @@ const prosedur = [
   },
 ];
 
+function getStatusClass(value: string) {
+  if (value.includes("SLHS")) return "status-slhs";
+  if (value.includes("Label HSP")) return "status-hsp";
+  return "status-none";
+}
+
 function PersyaratanProsedur() {
   return (
     <main className="slhs-guide">
@@ -154,6 +160,7 @@ function PersyaratanProsedur() {
           <table className="guide-table">
             <thead>
               <tr>
+                <th>No.</th>
                 <th>KBLI</th>
                 <th>Jenis Usaha</th>
                 <th>Mikro</th>
@@ -164,33 +171,21 @@ function PersyaratanProsedur() {
             </thead>
 
             <tbody>
-              {jenisTPP.map((item) => (
+              {jenisTPP.map((item, index) => (
                 <tr key={item.kbli}>
+                  <td className="guide-row-number">{index + 1}</td>
                   <td className="guide-kbli">{item.kbli}</td>
                   <td className="guide-business-name">{item.nama}</td>
-                  <td>{item.mikro}</td>
-                  <td>{item.kecil}</td>
-                  <td>{item.menengah}</td>
-                  <td>{item.besar}</td>
+                  <td className={getStatusClass(item.mikro)}>{item.mikro}</td>
+                  <td className={getStatusClass(item.kecil)}>{item.kecil}</td>
+                  <td className={getStatusClass(item.menengah)}>
+                    {item.menengah}
+                  </td>
+                  <td className={getStatusClass(item.besar)}>{item.besar}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="guide-note">
-          <strong>Perlu diperhatikan</strong>
-          <p>
-            Label HSP adalah Label Higiene Sanitasi Pangan. Tanda "—"
-            berarti tidak ada kategori yang dicantumkan pada tabel acuan
-            Dinkes DKI Jakarta, bukan berarti usaha tersebut otomatis
-            bebas dari seluruh kewajiban higiene sanitasi.
-          </p>
-          <p>
-            Tabel ini mengikuti publikasi Dinkes DKI Jakarta. Pastikan
-            kembali klasifikasi KBLI, skala usaha, dan persyaratan terbaru
-            melalui OSS sebelum mengajukan permohonan.
-          </p>
         </div>
       </section>
 
